@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tu IP Pública</title>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f1f5f9;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .card {
+            background-color: #1e293b;
+            padding: 30px 50px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        h1 {
+            color: #38bdf8;
+        }
+        #ip {
+            font-size: 1.5em;
+            color: #22c55e;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Tu Dirección IP Pública</h1>
+        <p id="ip">Cargando...</p>
+    </div>
+
+    <script>
+        fetch("https://api.ipify.org?format=json")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("ip").textContent = data.ip;
+            })
+            .catch(() => {
+                document.getElementById("ip").textContent = "No se pudo obtener la IP.";
+            });
+    </script>
+</body>
+</html>
